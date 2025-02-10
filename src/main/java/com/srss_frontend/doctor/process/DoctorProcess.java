@@ -1,7 +1,4 @@
-package com.srss_frontend.process;
-
-import java.lang.reflect.Type;
-import java.util.Map;
+package com.srss_frontend.doctor.process;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,20 +14,16 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.reflect.TypeToken;
 import com.srss_frontend.base.model.Status;
+import com.srss_frontend.doctor.model.Doctor;
+import com.srss_frontend.doctor.model.DoctorResponse;
 import com.srss_frontend.exception.ServiceException;
-import com.srss_frontend.patient.model.Patient;
-import com.srss_frontend.patient.model.PatientResponse;
 
 
 
 
 @Service
-public class PatientProcess {
+public class DoctorProcess {
 
 	public Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -39,20 +32,20 @@ public class PatientProcess {
 	@Value("${srss.url}")
 	String srssUrl;
 	
-	public PatientResponse getAllPatient() throws Exception {
+	public DoctorResponse getAllDoctor() throws Exception {
 
 		
-		PatientResponse patientResponse = new PatientResponse();
+		DoctorResponse doctorResponse = new DoctorResponse();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
 		//ambil dari properties
-		String  url = srssUrl+"/patient/getAll";
+		String  url = srssUrl+"/doctor/getAll";
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 
 		HttpEntity<?> entity = new HttpEntity<>(headers);
-		ResponseEntity<PatientResponse> response = null;
+		ResponseEntity<DoctorResponse> response = null;
 
 		
 		try {
@@ -60,13 +53,13 @@ public class PatientProcess {
 			        builder.toUriString(), 
 			        HttpMethod.GET, 
 			        entity, 
-			        PatientResponse.class);		
+			        DoctorResponse.class);		
 			
 			if(response != null) {
 				
 				if(response.getBody().getStatus().getResponseCode() == 200) {
 						
-					patientResponse = response.getBody();
+					doctorResponse = response.getBody();
 
 				}
 			}
@@ -83,23 +76,23 @@ public class PatientProcess {
 		}
 		
 		 
-		 return patientResponse;
+		 return doctorResponse;
 		
 	}
 	
 	
-	public Status savePatient(Patient patient) throws Exception{
+	public Status saveDoctor(Doctor doctor) throws Exception{
 
 		
 		Status status = new Status();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
-		String  url = srssUrl+"/patient/add";
+		String  url = srssUrl+"/doctor/add";
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 
-		HttpEntity<?> entity = new HttpEntity<>(patient, headers);
+		HttpEntity<?> entity = new HttpEntity<>(doctor, headers);
 		ResponseEntity<Status> response = null;
 
 		
@@ -135,19 +128,19 @@ public class PatientProcess {
 	}
 	
 	
-	public Status updatePatient(Patient patient) throws Exception {
+	public Status updateDoctor(Doctor doctor) throws Exception {
 
 		
 		Status status = new Status();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
-		String  url = srssUrl+"/patient/update/"+patient.getIdPasien();
+		String  url = srssUrl+"/doctor/update/"+doctor.getIdDokter();
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 
 
-		HttpEntity<?> entity = new HttpEntity<>(patient, headers);
+		HttpEntity<?> entity = new HttpEntity<>(doctor, headers);
 		ResponseEntity<Status> response = null;
 
 		
@@ -185,20 +178,20 @@ public class PatientProcess {
 	}
 	
 	
-	public PatientResponse getPatientById(Long idPatient) throws Exception {
+	public DoctorResponse getDoctorById(Long idDoctor) throws Exception {
 
 	
-		PatientResponse patient = new PatientResponse();
+		DoctorResponse doctorResponse = new DoctorResponse();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
-		String  url = srssUrl+"/patient/getById";
+		String  url = srssUrl+"/doctor/getById";
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
-		builder.queryParam("patientId", idPatient);
+		builder.queryParam("doctorId", idDoctor);
 
 		HttpEntity<?> entity = new HttpEntity<>( headers);
-		ResponseEntity<PatientResponse> response = null;
+		ResponseEntity<DoctorResponse> response = null;
 
 		
 		try {
@@ -206,13 +199,13 @@ public class PatientProcess {
 			        builder.toUriString(), 
 			        HttpMethod.GET, 
 			        entity, 
-			        PatientResponse.class);		
+			        DoctorResponse.class);		
 			
 			if(response != null) {
 				
 				if(response.getBody().getStatus().getResponseCode() == 200) {
 						
-						patient = response.getBody();
+					doctorResponse = response.getBody();
 				}	
 			}
 			
@@ -227,19 +220,19 @@ public class PatientProcess {
 		}
 		
 				 
-		 return patient;
+		 return doctorResponse;
 		
 	}
 	
 	
-	public Status deletePatientById(Long idPatient) throws Exception {
+	public Status deleteDoctorById(Long idDoctor) throws Exception {
 
 		
 		Status status = new Status();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
-		String  url = srssUrl+"/patient/deleteById/"+idPatient;
+		String  url = srssUrl+"/doctor/deleteById/"+idDoctor;
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 

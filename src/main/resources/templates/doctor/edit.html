@@ -56,7 +56,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a  th:href="@{/patient/}" class="app-brand-link">
+            <a th:href="@{/doctor/}" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -160,7 +160,7 @@
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                   
-                  <h4 style="margin-top: 10px; align-content: center;">Master Pasien</h4>
+                  <h4 style="margin-top: 10px; align-content: center;">Master Dokter</h4>
                   
                 </div>
               </div>
@@ -174,35 +174,39 @@
 
            <div class="container-xxl flex-grow-1 container-p-y">
             
-		<form  th:object="${patient}">
-            
-             <div class="card">
-                <div class="card-header"><h5>Detail Pasien</h5></div>
-                    <div class="card-body">
-                    
-                    <div class="row">
-                        <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Nomor Pasien</label>
-                          <input
-                            type="text"
-                            id="nomorPasien"
-                            name="nomorPasien"
+             <form th:action="@{/doctor/update}" method="post" th:object="${doctor}">
+
+             <input
+                            type="hidden"
+                            id="idDokter"
+                            name="idDokter"
                             class="form-control"
-                            th:value="${patient.nomorPasien}"
-                            placeholder="masukan nomor pasien"  disabled="disabled"  readonly="readonly"/>
-                        </div>
-                      </div>
-                      
+                            th:value="${doctor.idDokter}"
+                             />
+             
+							<input
+                            type="hidden"
+                            id="nomorDokter"
+                            name="nomorDokter"
+                            class="form-control"
+                            th:value="${doctor.nomorDokter}"
+                             />
+                            
+                                         
+              <div class="card">
+                <div class="card-header"><h5>Edit Dokter</h5></div>
+                    <div class="card-body">
                         <div class="row">
                         <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Nama Pasien</label>
+                          <label for="nameWithTitle" class="form-label">Nama Dokter</label>
                           <input
                             type="text"
-                            id="namaPasien"
-                            name="namaPasien"
+                            id="namaDokter"
+                            name="namaDokter"
                             class="form-control"
-                            th:value="${patient.namaPasien}"
-                            placeholder="masukan nama pasien" disabled="disabled"  readonly="readonly" />
+                            th:value="${doctor.namaDokter}"
+                            required="required"
+                            placeholder="masukan nama Dokter" />
                         </div>
                       </div>
 
@@ -213,9 +217,10 @@
                             type="number"
                             id="nomorHp"
                             name="nomorHp"
-                            th:value="${patient.nomorHp}"
+                            th:value="${doctor.nomorHp}"
                             class="form-control"
-                            placeholder="masukan nomor Hp pasien" disabled="disabled"  readonly="readonly" />
+                            required="required"
+                            placeholder="masukan nomor Hp Dokter" />
                         </div>
                       </div>
 
@@ -227,8 +232,9 @@
                             id="tanggalLahir"
                             name="tanggalLahir"
                             class="form-control"
-                            th:value="${patient.tanggalLahir}"
-                            placeholder="masukan tanggal lahir" readonly="readonly" disabled="disabled" />
+                            th:value="${doctor.tanggalLahir}"
+                            required="required"
+                            placeholder="masukan tanggal lahir" />
                         </div>
                       </div>
 
@@ -242,7 +248,8 @@
                               name="jenisKelamin"
                               id="jenisKelamin"
                               th:field="*{jenisKelamin}"
-                              value="Laki-Laki" disabled="disabled"  />
+                              required="required"
+                              value="Laki-Laki" />
                             <label class="form-check-label" for="jenisKelamin">Laki-Laki</label>
                           </div>
                           <div class="form-check form-check-inline">
@@ -252,7 +259,8 @@
                               name="jenisKelamin"
                               id="jenisKelamin"
                               th:field="*{jenisKelamin}"
-                              value="Perempuan" disabled="disabled"  />
+                              required="required"
+                              value="Perempuan" />
                             <label class="form-check-label" for="jenisKelamin">Perempuan</label>
                           </div>
                         </div>
@@ -260,12 +268,12 @@
 
 					<div class="row">
                        <div class="col-md">                      
-                        <label for="exampleFormControlSelect1" class="form-label">Kategori</label>
-                        <select class="form-select" id="kategori" name = "kategori" aria-label="Default select example" disabled="disabled" >
-                          <option selected th:value="${patient.kategori}"  th:text="${patient.kategori}"></option>
-                          <option value="BPJS">BPJS</option>
-                          <option value="ASURANSI">ASURANSI</option>
-                          <option value="PRIBADI">PRIBADI</option>
+                        <label for="exampleFormControlSelect1" class="form-label">spesialis</label>
+                        <select class="form-select" id="spesialis" name = "spesialis" aria-label="Default select example" required="required">
+                          <option selected th:value="${doctor.spesialis}"  th:text="${doctor.spesialis}"></option>
+                         <option value="ANAK">ANAK</option>
+                          <option value="THT">THT</option>
+                          <option value="GIGI">GIGI</option>
                         </select>
                       </div>
                     </div>
@@ -274,20 +282,23 @@
                         <div class="col mb-6">
                           <div>
                             <label for="exampleFormControlTextarea1" class="form-label">Alamat</label>
-                            <textarea class="form-control" id="alamat" th:field="*{alamat}" disabled="disabled"  readonly="readonly"
-                              name="alamat" rows="3"></textarea>
+                            <textarea class="form-control" id="alamat" th:field="*{alamat}"
+                              name="alamat" rows="3" required="required"></textarea>
                           </div>
                         </div>
                       </div>
                       
 						<div class="row">
 						    <div class="col text-end">
-						        <a th:href="@{/patient/}" class="btn btn-secondary">Kembali</a>
+						        <button type="submit" class="btn btn-primary me-2">Simpan</button>
+						        <a th:href="@{/doctor/}" class="btn btn-secondary">Batal</a>
 						    </div>
-						</div>                    
-					</div>
+						</div>
+                        
+                    </div>
                   </div>
-                           </form>
+                  
+                 </form>
           
             </div>
             <!-- / Content -->

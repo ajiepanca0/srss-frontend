@@ -14,7 +14,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>SRSS-BUDILUHUR</title>
+    <title>SRSS-BUDI LUHUR</title>
 
     <meta name="description" content="" />
 
@@ -56,7 +56,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a  th:href="@{/patient/}" class="app-brand-link">
+            <a  th:href="@{/doctor/}" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -127,7 +127,7 @@
                 th:href="@{/patient/}"
                 class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div class="text-truncate" data-i18n="patient">Patient</div>
+                <div class="text-truncate" data-i18n="patient">Pasien</div>
               </a>
             </li>
             
@@ -160,7 +160,7 @@
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                   
-                  <h4 style="margin-top: 10px; align-content: center;">Master Pasien</h4>
+                  <h4 style="margin-top: 10px; align-content: center;">Master Dokter</h4>
                   
                 </div>
               </div>
@@ -174,35 +174,20 @@
 
            <div class="container-xxl flex-grow-1 container-p-y">
             
-		<form  th:object="${patient}">
-            
-             <div class="card">
-                <div class="card-header"><h5>Detail Pasien</h5></div>
+            <form th:action="@{/doctor/add}" method="post" th:object="${dokter}">
+             
+              <div class="card">
+                <div class="card-header"><h5>Tambah Dokter</h5></div>
                     <div class="card-body">
-                    
-                    <div class="row">
+                      <div class="row">
                         <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Nomor Pasien</label>
+                          <label for="nameWithTitle" class="form-label">Nama Dokter</label>
                           <input
                             type="text"
-                            id="nomorPasien"
-                            name="nomorPasien"
+                            id="namaDokter"
+                            name="namaDokter"
                             class="form-control"
-                            th:value="${patient.nomorPasien}"
-                            placeholder="masukan nomor pasien"  disabled="disabled"  readonly="readonly"/>
-                        </div>
-                      </div>
-                      
-                        <div class="row">
-                        <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Nama Pasien</label>
-                          <input
-                            type="text"
-                            id="namaPasien"
-                            name="namaPasien"
-                            class="form-control"
-                            th:value="${patient.namaPasien}"
-                            placeholder="masukan nama pasien" disabled="disabled"  readonly="readonly" />
+                            placeholder="masukan nama Dokter" />
                         </div>
                       </div>
 
@@ -213,9 +198,9 @@
                             type="number"
                             id="nomorHp"
                             name="nomorHp"
-                            th:value="${patient.nomorHp}"
                             class="form-control"
-                            placeholder="masukan nomor Hp pasien" disabled="disabled"  readonly="readonly" />
+                            required="required"
+                            placeholder="masukan nama Dokter" />
                         </div>
                       </div>
 
@@ -227,13 +212,13 @@
                             id="tanggalLahir"
                             name="tanggalLahir"
                             class="form-control"
-                            th:value="${patient.tanggalLahir}"
-                            placeholder="masukan tanggal lahir" readonly="readonly" disabled="disabled" />
+                            required="required"
+                            placeholder="masukan tanggal lahir" />
                         </div>
                       </div>
 
                       <div class="row">
-                        <div class="col-md">
+                        <div class="col-md mb-2">
                           <label class="form-label d-block">Jenis Kelamin</label>
                           <div class="form-check form-check-inline mt-2">
                             <input
@@ -241,8 +226,9 @@
                               type="radio"
                               name="jenisKelamin"
                               id="jenisKelamin"
-                              th:field="*{jenisKelamin}"
-                              value="Laki-Laki" disabled="disabled"  />
+                              value="Laki-Laki"
+							  required="required"
+                               />
                             <label class="form-check-label" for="jenisKelamin">Laki-Laki</label>
                           </div>
                           <div class="form-check form-check-inline">
@@ -251,43 +237,47 @@
                               type="radio"
                               name="jenisKelamin"
                               id="jenisKelamin"
-                              th:field="*{jenisKelamin}"
-                              value="Perempuan" disabled="disabled"  />
+                              value="Perempuan"
+                              required="required"
+                               />
                             <label class="form-check-label" for="jenisKelamin">Perempuan</label>
                           </div>
                         </div>
                       </div>
 
-					<div class="row">
+                     <div class="row">
                        <div class="col-md">                      
-                        <label for="exampleFormControlSelect1" class="form-label">Kategori</label>
-                        <select class="form-select" id="kategori" name = "kategori" aria-label="Default select example" disabled="disabled" >
-                          <option selected th:value="${patient.kategori}"  th:text="${patient.kategori}"></option>
-                          <option value="BPJS">BPJS</option>
-                          <option value="ASURANSI">ASURANSI</option>
-                          <option value="PRIBADI">PRIBADI</option>
+                        <label for="exampleFormControlSelect1" class="form-label">spesialis</label>
+                        <select class="form-select" id="spesialis" name="spesialis" aria-label="Default select example" required="required">
+                          <option value="ANAK">ANAK</option>
+                          <option value="THT">THT</option>
+                          <option value="GIGI">GIGI</option>
                         </select>
                       </div>
                     </div>
 
                       <div class="row">
-                        <div class="col mb-6">
+                        <div class="col mb-6 mt-2">
                           <div>
                             <label for="exampleFormControlTextarea1" class="form-label">Alamat</label>
-                            <textarea class="form-control" id="alamat" th:field="*{alamat}" disabled="disabled"  readonly="readonly"
-                              name="alamat" rows="3"></textarea>
+                            <textarea class="form-control" id="alamat" name="alamat" rows="3" required="required" ></textarea>
                           </div>
                         </div>
                       </div>
-                      
-						<div class="row">
+
+                    
+                    
+                   <div class="row">
 						    <div class="col text-end">
-						        <a th:href="@{/patient/}" class="btn btn-secondary">Kembali</a>
+						        <button type="submit" class="btn btn-primary me-2">Simpan</button>
+						        <a th:href="@{/doctor/}" class="btn btn-secondary">Batal</a>
 						    </div>
-						</div>                    
 					</div>
+                    
+                   </div>
+                    
                   </div>
-                           </form>
+			</form>
           
             </div>
             <!-- / Content -->

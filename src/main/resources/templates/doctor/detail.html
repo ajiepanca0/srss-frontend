@@ -160,7 +160,7 @@
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                   
-                  <h4 style="margin-top: 10px; align-content: center;">Master Pasien</h4>
+                  <h4 style="margin-top: 10px; align-content: center;">Master Dokter</h4>
                   
                 </div>
               </div>
@@ -174,35 +174,35 @@
 
            <div class="container-xxl flex-grow-1 container-p-y">
             
-		<form  th:object="${patient}">
+		<form  th:object="${doctor}">
             
              <div class="card">
-                <div class="card-header"><h5>Detail Pasien</h5></div>
+                <div class="card-header"><h5>Detail Dokter</h5></div>
                     <div class="card-body">
                     
                     <div class="row">
                         <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Nomor Pasien</label>
+                          <label for="nameWithTitle" class="form-label">Nomor Dokter</label>
                           <input
                             type="text"
-                            id="nomorPasien"
-                            name="nomorPasien"
+                            id="nomorDokter"
+                            name="nomorDokter"
                             class="form-control"
-                            th:value="${patient.nomorPasien}"
-                            placeholder="masukan nomor pasien"  disabled="disabled"  readonly="readonly"/>
+                            th:value="${doctor.nomorDokter}"
+                            placeholder="masukan nomor Dokter"  disabled="disabled"  readonly="readonly"/>
                         </div>
                       </div>
                       
                         <div class="row">
                         <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Nama Pasien</label>
+                          <label for="nameWithTitle" class="form-label">Nama Dokter</label>
                           <input
                             type="text"
-                            id="namaPasien"
-                            name="namaPasien"
+                            id="namaDokter"
+                            name="namaDokter"
                             class="form-control"
-                            th:value="${patient.namaPasien}"
-                            placeholder="masukan nama pasien" disabled="disabled"  readonly="readonly" />
+                            th:value="${doctor.namaDokter}"
+                            placeholder="masukan nama Dokter" disabled="disabled"  readonly="readonly" />
                         </div>
                       </div>
 
@@ -213,9 +213,9 @@
                             type="number"
                             id="nomorHp"
                             name="nomorHp"
-                            th:value="${patient.nomorHp}"
+                            th:value="${doctor.nomorHp}"
                             class="form-control"
-                            placeholder="masukan nomor Hp pasien" disabled="disabled"  readonly="readonly" />
+                            placeholder="masukan nomor Hp Dokter" disabled="disabled"  readonly="readonly" />
                         </div>
                       </div>
 
@@ -227,7 +227,7 @@
                             id="tanggalLahir"
                             name="tanggalLahir"
                             class="form-control"
-                            th:value="${patient.tanggalLahir}"
+                            th:value="${doctor.tanggalLahir}"
                             placeholder="masukan tanggal lahir" readonly="readonly" disabled="disabled" />
                         </div>
                       </div>
@@ -260,12 +260,12 @@
 
 					<div class="row">
                        <div class="col-md">                      
-                        <label for="exampleFormControlSelect1" class="form-label">Kategori</label>
-                        <select class="form-select" id="kategori" name = "kategori" aria-label="Default select example" disabled="disabled" >
-                          <option selected th:value="${patient.kategori}"  th:text="${patient.kategori}"></option>
-                          <option value="BPJS">BPJS</option>
-                          <option value="ASURANSI">ASURANSI</option>
-                          <option value="PRIBADI">PRIBADI</option>
+                        <label for="exampleFormControlSelect1" class="form-label">Spesialis</label>
+                        <select class="form-select" id="spesialis" name = "spesialis" aria-label="Default select example" disabled="disabled" >
+                          <option selected th:value="${doctor.spesialis}"  th:text="${doctor.spesialis}"></option>
+                          <option value="ANAK">ANAK</option>
+                          <option value="THT">THT</option>
+                          <option value="GIGI">GIGI</option>
                         </select>
                       </div>
                     </div>
@@ -282,7 +282,7 @@
                       
 						<div class="row">
 						    <div class="col text-end">
-						        <a th:href="@{/patient/}" class="btn btn-secondary">Kembali</a>
+						        <a th:href="@{/doctor/}" class="btn btn-secondary">Kembali</a>
 						    </div>
 						</div>                    
 					</div>

@@ -10,62 +10,62 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
 import com.srss_frontend.base.model.Status;
+import com.srss_frontend.doctor.model.Doctor;
+import com.srss_frontend.doctor.model.DoctorResponse;
+import com.srss_frontend.doctor.process.DoctorProcess;
 import com.srss_frontend.exception.ServiceException;
-import com.srss_frontend.patient.model.Patient;
-import com.srss_frontend.patient.model.PatientResponse;
-import com.srss_frontend.patient.process.PatientProcess;
-
 
 @Controller
-@RequestMapping("/patient")
-public class PatientController {
+@RequestMapping("/doctor")
+public class DoctorController {
 
 	@Autowired
-	private PatientProcess pasienProcess;
+	private DoctorProcess doctorProcess;
 
 	@GetMapping("/")
-	public String getAllPatient(Model model, RedirectAttributes redirectAttributes) {
+	public String getAllDoctor(Model model, RedirectAttributes redirectAttributes) {
 
-		PatientResponse patientResponse = new PatientResponse();
+		DoctorResponse doctorResponse = new DoctorResponse();
 
 		try {
 			
-			patientResponse = pasienProcess.getAllPatient();
-			model.addAttribute("patients", patientResponse.getPatient());			
+			doctorResponse = doctorProcess.getAllDoctor();
+			model.addAttribute("doctors", doctorResponse.getDoctor());	
 
 		} catch (ServiceException se) {
 
 			System.out.print("ServiceException : " + se.getMessage());
 
-			model.addAttribute("patients", null);
+			model.addAttribute("doctors", null);
 
 		}
 
 		catch (Exception e) {
 
 			System.out.print("Exception : " + e.getMessage());
-			model.addAttribute("patients", null);
+			model.addAttribute("doctors", null);
 		}
 
-		return "patient/showAll";
+		return "doctor/showAll";
 	}
 
 	
 	@GetMapping("/add")
-	public String addPatient() {
-		return "patient/add";
+	public String addDoctor() {
+		return "doctor/add";
 	}
 	
 	
 	@PostMapping("/add")
-	public String addPatient(@ModelAttribute Patient patient, RedirectAttributes redirectAttributes) {
+	public String addDoctor(@ModelAttribute Doctor doctor, RedirectAttributes redirectAttributes) {
 
 		Status status = new Status();
 
 		try {
 
-			status = pasienProcess.savePatient(patient);
+			status = doctorProcess.saveDoctor(doctor);
 
 			redirectAttributes.addFlashAttribute("toastMessage", status.getResponseMessage());
 			redirectAttributes.addFlashAttribute("toastType", "success");
@@ -84,26 +84,26 @@ public class PatientController {
 
 		}
 
-		return "redirect:/patient/";
+		return "redirect:/doctor/";
 	}
 
 	
 	
 	@GetMapping("/detail")
-	public String detailPatient(@RequestParam Long id, Model model) {
+	public String detailDoctor(@RequestParam Long id, Model model) {
 
-		Patient patient = new Patient();
+		Doctor doctor = new Doctor();
 
 		try {
 			
-			patient = pasienProcess.getPatientById(id).getPatient().get(0);
+			doctor = doctorProcess.getDoctorById(id).getDoctor().get(0);
 			
 			
-			if (patient == null) {
-				return "redirect:/patient/";
+			if (doctor == null) {
+				return "redirect:/doctor/";
 			}
 			
-			model.addAttribute("patient", patient);
+			model.addAttribute("doctor", doctor);
 
 			
 		}
@@ -112,35 +112,35 @@ public class PatientController {
 
 			System.out.print("ServiceException : " + se.getMessage());
 
-			model.addAttribute("patient", null);
+			model.addAttribute("doctor", null);
 
 		}
 
 		catch (Exception e) {
 
 			System.out.print("Exception : " + e.getMessage());
-			model.addAttribute("patient", null);
+			model.addAttribute("doctor", null);
 		}
 
-		return "patient/detail";
+		return "doctor/detail";
 	}
 
 	
 	
 	@GetMapping("/update")
-	public String updatePatient(@RequestParam Long id, Model model) {
+	public String updateDoctor(@RequestParam Long id, Model model) {
 
-		Patient patient = new Patient();
+		Doctor doctor = new Doctor();
 
 		try {
 			
-			patient = pasienProcess.getPatientById(id).getPatient().get(0);
+			doctor = doctorProcess.getDoctorById(id).getDoctor().get(0);
 			
-			if (patient == null) {
-				return "redirect:/patient/getAll";
+			if (doctor == null) {
+				return "redirect:/doctor/getAll";
 			}
 			
-			model.addAttribute("patient", patient);
+			model.addAttribute("doctor", doctor);
 
 		} 
 		
@@ -148,28 +148,28 @@ public class PatientController {
 
 			System.out.print("ServiceException : " + se.getMessage());
 
-			model.addAttribute("patient", null);
+			model.addAttribute("doctor", null);
 
 		}
 
 		catch (Exception e) {
 
 			System.out.print("Exception : " + e.getMessage());
-			model.addAttribute("patient", null);
+			model.addAttribute("doctor", null);
 		}
 
 		
-		return "patient/edit";
+		return "doctor/edit";
 	}
 
 	@PostMapping("/update")
-	public String updatePatient(@ModelAttribute Patient patient, RedirectAttributes redirectAttributes) {
+	public String updateDoctor(@ModelAttribute Doctor doctor, RedirectAttributes redirectAttributes) {
 
 		Status status = new Status();
 
 		try {
 
-			status = pasienProcess.updatePatient(patient);
+			status = doctorProcess.updateDoctor(doctor);
 
 
 			redirectAttributes.addFlashAttribute("toastMessage", status.getResponseMessage());
@@ -191,19 +191,19 @@ public class PatientController {
 
 		}
 
-		return "redirect:/patient/";
+		return "redirect:/doctor/";
 	}
 
 	
 	
 	@PostMapping("/delete")
-	public String deletePatientById(@ModelAttribute Patient patient, RedirectAttributes redirectAttributes) {
+	public String deletePatientById(@ModelAttribute Doctor doctor, RedirectAttributes redirectAttributes) {
 
 		Status status = new Status();
 
 		try {
 
-			status = pasienProcess.deletePatientById(patient.getIdPasien());
+			status = doctorProcess.deleteDoctorById(doctor.getIdDokter());
 		
 				
 			redirectAttributes.addFlashAttribute("toastMessage", status.getResponseMessage());
@@ -226,7 +226,7 @@ public class PatientController {
 
 		}
 
-		return "redirect:/patient/";
+		return "redirect:/doctor/";
 	}
 
 }
