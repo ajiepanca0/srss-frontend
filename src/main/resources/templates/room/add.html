@@ -14,7 +14,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>SRSS-BUDILUHUR</title>
+    <title>SRSS-BUDI LUHUR</title>
 
     <meta name="description" content="" />
 
@@ -56,7 +56,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a th:href="@{/doctor/}" class="app-brand-link">
+            <a  th:href="@{/doctor/}" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -172,7 +172,6 @@
             </li>
 
           </ul>
-          
         </aside>
         <!-- / Menu -->
 
@@ -192,7 +191,7 @@
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                   
-                  <h4 style="margin-top: 10px; align-content: center;">Master Doctor</h4>
+                  <h4 style="margin-top: 10px; align-content: center;">Master Room</h4>
                   
                 </div>
               </div>
@@ -206,131 +205,56 @@
 
            <div class="container-xxl flex-grow-1 container-p-y">
             
-             <form th:action="@{/doctor/update}" method="post" th:object="${doctor}">
-
-             <input
-                            type="hidden"
-                            id="doctorId"
-                            name="doctorId"
-                            class="form-control"
-                            th:value="${doctor.doctorId}"
-                             />
+            <form th:action="@{/room/add}" method="post" th:object="${room}">
              
-							<input
-                            type="hidden"
-                            id="doctorNumber"
-                            name="doctorNumber"
-                            class="form-control"
-                            th:value="${doctor.doctorNumber}"
-                             />
-                            
-                                         
               <div class="card">
-                <div class="card-header"><h5>Doctor Edit</h5></div>
+                <div class="card-header"><h5>Add Room</h5></div>
                     <div class="card-body">
-                        <div class="row">
+                      <div class="row">
                         <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Doctor Name</label>
+                          <label for="nameWithTitle" class="form-label">Room Name</label>
                           <input
                             type="text"
-                            id="doctorName"
-                            name="doctorName"
+                            id="roomName"
+                            name="roomName"
                             class="form-control"
-                            th:value="${doctor.doctorName}"
-                            required="required"
-                            placeholder="enter doctor name" />
+                            placeholder="enter room name" />
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Phone Number</label>
+                          <label for="nameWithTitle" class="form-label">Bed Capacity</label>
                           <input
                             type="number"
-                            id="phoneNumber"
-                            name="phoneNumber"
-                            th:value="${doctor.phoneNumber}"
+                            id="bedCapacity"
+                            name="bedCapacity"
                             class="form-control"
                             required="required"
-                            placeholder="enter phone number" />
+                            placeholder="enter Bed Capacity" />
                         </div>
                       </div>
 
                       <div class="row">
-                        <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Date Of Birth</label>
-                          <input
-                            type="date"
-                            id="dateOfBirth"
-                            name="dateOfBirth"
-                            class="form-control"
-                            th:value="${doctor.dateOfBirth}"
-                            required="required"
-                            placeholder="masukan date of birth" />
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md">
-                          <label class="form-label d-block">Gender</label>
-                          <div class="form-check form-check-inline mt-2">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="gender"
-                              id="gender"
-                              th:field="*{gender}"
-                              required="required"
-                              value="Man" />
-                            <label class="form-check-label" for="gender">Man</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="gender"
-                              id="gender"
-                              th:field="*{gender}"
-                              required="required"
-                              value="Women" />
-                            <label class="form-check-label" for="gender">Women</label>
-                          </div>
-                        </div>
-                      </div>
-
-					<div class="row">
-                       <div class="col-md">                      
-                        <label for="exampleFormControlSelect1" class="form-label">Specialty</label>
-                        <select class="form-select" id="specialty" name = "specialty" aria-label="Default select example" required="required">
-                          <option selected th:value="${doctor.specialty}"  th:text="${doctor.specialty}"></option>
-                          <option value="Dermatologist">Dermatologist</option>
-                          <option value="Allergist">Allergist</option>
-                          <option value="Orthopedics">Orthopedics</option>
-                        </select>
-                      </div>
-                    </div>
-
-                      <div class="row">
-                        <div class="col mb-6">
+                        <div class="col mb-6 mt-2">
                           <div>
-                            <label for="exampleFormControlTextarea1" class="form-label">Address</label>
-                            <textarea class="form-control" id="address" th:field="*{address}"
-                              name="address" rows="3" required="required"></textarea>
+                            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3" required="required" ></textarea>
                           </div>
                         </div>
                       </div>
-                      
-						<div class="row">
-						    <div class="col text-end">
-						        <button type="submit" class="btn btn-primary me-2">Save</button>
-						        <a th:href="@{/doctor/}" class="btn btn-secondary">Cancel</a>
-						    </div>
+
+                   <div class="row">
+						<div class="col text-end">
+							<button type="submit" class="btn btn-primary me-2">Save</button>
+							<a th:href="@{/room/}" class="btn btn-secondary">Cancel</a>
 						</div>
-                        
-                    </div>
+					</div>
+                    
+                   </div>
+                    
                   </div>
-                  
-                 </form>
+			</form>
           
             </div>
             <!-- / Content -->

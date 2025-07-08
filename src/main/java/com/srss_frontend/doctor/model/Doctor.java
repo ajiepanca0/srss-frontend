@@ -4,104 +4,85 @@ import java.time.LocalDate;
 
 public class Doctor {
 
-	public Long idDokter;
 	
-	public String nomorDokter;
+	private Long doctorId;
 
-	public String namaDokter;
+	private String doctorNumber;
 
-	public String nomorHp;
+	private String doctorName;
 
-	public LocalDate tanggalLahir;
+	private String phoneNumber;
 
-	public String jenisKelamin;
+	private LocalDate dateOfBirth;
 
-	public String spesialis;
+	private String gender;
 
-	public String alamat;
+	private String specialty;
 
-	public Doctor() {
+	private String address;
+
+	public Long getDoctorId() {
+		return doctorId;
 	}
 
-	
-
-	public Long getIdDokter() {
-		return idDokter;
+	public void setDoctorId(Long doctorId) {
+		this.doctorId = doctorId;
 	}
 
-
-
-	public void setIdDokter(Long idDokter) {
-		this.idDokter = idDokter;
+	public String getDoctorNumber() {
+		return doctorNumber;
 	}
 
-
-
-	public String getNomorDokter() {
-		return nomorDokter;
+	public void setDoctorNumber(String doctorNumber) {
+		this.doctorNumber = doctorNumber;
 	}
 
-
-
-	public void setNomorDokter(String nomorDokter) {
-		this.nomorDokter = nomorDokter;
+	public String getDoctorName() {
+		return doctorName;
 	}
 
-
-
-	public String getNamaDokter() {
-		return namaDokter;
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
 	}
 
-
-
-	public void setNamaDokter(String namaDokter) {
-		this.namaDokter = namaDokter;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-
-
-	public String getNomorHp() {
-		return nomorHp;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
-	public void setNomorHp(String nomorHp) {
-		this.nomorHp = nomorHp;
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public LocalDate getTanggalLahir() {
-		return tanggalLahir;
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
-	public void setTanggalLahir(LocalDate tanggalLahir) {
-		this.tanggalLahir = tanggalLahir;
+	public String getGender() {
+		return gender;
 	}
 
-	public String getJenisKelamin() {
-		return jenisKelamin;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
-	public void setJenisKelamin(String jenisKelamin) {
-		this.jenisKelamin = jenisKelamin;
-	}
-	
-
-	public String getSpesialis() {
-		return spesialis;
+	public String getSpecialty() {
+		return specialty;
 	}
 
-	public void setSpesialis(String spesialis) {
-		this.spesialis = spesialis;
+	public void setSpecialty(String specialty) {
+		this.specialty = specialty;
 	}
 
-
-
-	public String getAlamat() {
-		return alamat;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAlamat(String alamat) {
-		this.alamat = alamat;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }

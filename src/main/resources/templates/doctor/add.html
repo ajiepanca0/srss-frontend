@@ -127,7 +127,7 @@
                 th:href="@{/patient/}"
                 class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div class="text-truncate" data-i18n="patient">Pasien</div>
+                <div class="text-truncate" data-i18n="patient">Patient</div>
               </a>
             </li>
             
@@ -136,11 +136,43 @@
                 th:href="@{/doctor/}"
                 class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div class="text-truncate" data-i18n="doctor">Dokter</div>
+                <div class="text-truncate" data-i18n="doctor">Doctor</div>
+              </a>
+            </li>
+            
+             <li class="menu-item">
+              <a
+                th:href="@{/room/}"
+                class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div class="text-truncate" data-i18n="room">Room</div>
+              </a>
+            </li>
+            
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text"> Transaction </span>
+            </li>
+        
+            <li class="menu-item">
+              <a
+                th:href="@{/inpatient/}"
+                class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div class="text-truncate" data-i18n="inpatient">inpatient</div>
+              </a>
+            </li>
+            
+            <li class="menu-item">
+              <a
+                th:href="@{/outpatient/}"
+                class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div class="text-truncate" data-i18n="outpatient">outpatient</div>
               </a>
             </li>
 
           </ul>
+          
         </aside>
         <!-- / Menu -->
 
@@ -160,7 +192,7 @@
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                   
-                  <h4 style="margin-top: 10px; align-content: center;">Master Dokter</h4>
+                  <h4 style="margin-top: 10px; align-content: center;">Master Doctor</h4>
                   
                 </div>
               </div>
@@ -177,81 +209,81 @@
             <form th:action="@{/doctor/add}" method="post" th:object="${dokter}">
              
               <div class="card">
-                <div class="card-header"><h5>Tambah Dokter</h5></div>
+                <div class="card-header"><h5>Add Doctor</h5></div>
                     <div class="card-body">
                       <div class="row">
                         <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Nama Dokter</label>
+                          <label for="nameWithTitle" class="form-label">Doctor Name</label>
                           <input
                             type="text"
-                            id="namaDokter"
-                            name="namaDokter"
+                            id="doctorName"
+                            name="doctorName"
                             class="form-control"
-                            placeholder="masukan nama Dokter" />
+                            placeholder="enter doctor name" />
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Nomor Hp</label>
+                          <label for="nameWithTitle" class="form-label">Phone Number</label>
                           <input
                             type="number"
-                            id="nomorHp"
-                            name="nomorHp"
+                            id="phoneNumber"
+                            name="phoneNumber"
                             class="form-control"
                             required="required"
-                            placeholder="masukan nama Dokter" />
+                            placeholder="enter mobile number" />
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Tanggal Lahir</label>
+                          <label for="nameWithTitle" class="form-label">Date Of Birth</label>
                           <input
                             type="date"
-                            id="tanggalLahir"
-                            name="tanggalLahir"
+                            id="dateOfBirth"
+                            name="dateOfBirth"
                             class="form-control"
                             required="required"
-                            placeholder="masukan tanggal lahir" />
+                            placeholder="Enter date of birth" />
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-md mb-2">
-                          <label class="form-label d-block">Jenis Kelamin</label>
+                          <label class="form-label d-block">Gender</label>
                           <div class="form-check form-check-inline mt-2">
                             <input
                               class="form-check-input"
                               type="radio"
-                              name="jenisKelamin"
-                              id="jenisKelamin"
-                              value="Laki-Laki"
+                              name="gender"
+                              id="gender"
+                              value="Man"
 							  required="required"
                                />
-                            <label class="form-check-label" for="jenisKelamin">Laki-Laki</label>
+                            <label class="form-check-label" for="gender">Man</label>
                           </div>
                           <div class="form-check form-check-inline">
                             <input
                               class="form-check-input"
                               type="radio"
-                              name="jenisKelamin"
-                              id="jenisKelamin"
-                              value="Perempuan"
+                              name="gender"
+                              id="gender"
+                              value="Women"
                               required="required"
                                />
-                            <label class="form-check-label" for="jenisKelamin">Perempuan</label>
+                            <label class="form-check-label" for="gender">Women</label>
                           </div>
                         </div>
                       </div>
 
                      <div class="row">
                        <div class="col-md">                      
-                        <label for="exampleFormControlSelect1" class="form-label">spesialis</label>
-                        <select class="form-select" id="spesialis" name="spesialis" aria-label="Default select example" required="required">
-                          <option value="ANAK">ANAK</option>
-                          <option value="THT">THT</option>
-                          <option value="GIGI">GIGI</option>
+                        <label for="exampleFormControlSelect1" class="form-label">specialty</label>
+                        <select class="form-select" id="specialty" name="specialty" aria-label="Default select example" required="required">
+                          <option value="Dermatologist">Dermatologist</option>
+                          <option value="Allergist">Allergist</option>
+                          <option value="Orthopedics">Orthopedics</option>
                         </select>
                       </div>
                     </div>
@@ -259,8 +291,8 @@
                       <div class="row">
                         <div class="col mb-6 mt-2">
                           <div>
-                            <label for="exampleFormControlTextarea1" class="form-label">Alamat</label>
-                            <textarea class="form-control" id="alamat" name="alamat" rows="3" required="required" ></textarea>
+                            <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+                            <textarea class="form-control" id="address" name="address" rows="3" required="required" ></textarea>
                           </div>
                         </div>
                       </div>
@@ -269,8 +301,8 @@
                     
                    <div class="row">
 						    <div class="col text-end">
-						        <button type="submit" class="btn btn-primary me-2">Simpan</button>
-						        <a th:href="@{/doctor/}" class="btn btn-secondary">Batal</a>
+						        <button type="submit" class="btn btn-primary me-2">Save</button>
+						        <a th:href="@{/doctor/}" class="btn btn-secondary">Cancel</a>
 						    </div>
 					</div>
                     

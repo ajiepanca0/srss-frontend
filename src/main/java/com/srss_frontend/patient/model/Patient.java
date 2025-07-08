@@ -2,89 +2,88 @@ package com.srss_frontend.patient.model;
 
 import java.time.LocalDate;
 
+
 public class Patient {
 
-	public Long idPasien;
 	
-	public String nomorPasien;
+	private Long patientId;
 
-	public String namaPasien;
+	private String patientNumber;
 
-	public String nomorHp;
+	private String patientName;
 
-	public LocalDate tanggalLahir;
+	private String phoneNumber;
 
-	public String jenisKelamin;
+	private LocalDate dateOfBirth;
 
-	public String kategori;
+	private String gender;
 
-	public String alamat;
+	private String category;
 
-	public Patient() {
+	private String address;
+
+	public Long getPatientId() {
+		return patientId;
 	}
 
-	public Long getIdPasien() {
-		return idPasien;
+	public void setPatientId(Long patientId) {
+		this.patientId = patientId;
 	}
 
-	public void setIdPasien(Long idPasien) {
-		this.idPasien = idPasien;
+	public String getPatientNumber() {
+		return patientNumber;
 	}
 
-	public String getNomorPasien() {
-		return nomorPasien;
+	public void setPatientNumber(String patientNumber) {
+		this.patientNumber = patientNumber;
 	}
 
-	public void setNomorPasien(String nomorPasien) {
-		this.nomorPasien = nomorPasien;
+	public String getPatientName() {
+		return patientName;
 	}
 
-	public String getNamaPasien() {
-		return namaPasien;
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
 	}
 
-	public void setNamaPasien(String namaPasien) {
-		this.namaPasien = namaPasien;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public String getNomorHp() {
-		return nomorHp;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
-	public void setNomorHp(String nomorHp) {
-		this.nomorHp = nomorHp;
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public LocalDate getTanggalLahir() {
-		return tanggalLahir;
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
-	public void setTanggalLahir(LocalDate tanggalLahir) {
-		this.tanggalLahir = tanggalLahir;
+	public String getGender() {
+		return gender;
 	}
 
-	public String getJenisKelamin() {
-		return jenisKelamin;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
-	public void setJenisKelamin(String jenisKelamin) {
-		this.jenisKelamin = jenisKelamin;
+	public String getCategory() {
+		return category;
 	}
 
-	public String getKategori() {
-		return kategori;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public void setKategori(String kategori) {
-		this.kategori = kategori;
+	public String getAddress() {
+		return address;
 	}
 
-	public String getAlamat() {
-		return alamat;
-	}
-
-	public void setAlamat(String alamat) {
-		this.alamat = alamat;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }

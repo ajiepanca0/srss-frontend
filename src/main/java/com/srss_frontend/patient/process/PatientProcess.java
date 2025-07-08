@@ -142,7 +142,7 @@ public class PatientProcess {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
-		String  url = srssUrl+"/patient/update/"+patient.getIdPasien();
+		String  url = srssUrl+"/patient/update/"+patient.getPatientId();
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 
@@ -185,7 +185,7 @@ public class PatientProcess {
 	}
 	
 	
-	public PatientResponse getPatientById(Long idPatient) throws Exception {
+	public PatientResponse getPatientById(Long patientId) throws Exception {
 
 	
 		PatientResponse patient = new PatientResponse();
@@ -195,7 +195,7 @@ public class PatientProcess {
 		String  url = srssUrl+"/patient/getById";
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
-		builder.queryParam("patientId", idPatient);
+		builder.queryParam("patientId", patientId);
 
 		HttpEntity<?> entity = new HttpEntity<>( headers);
 		ResponseEntity<PatientResponse> response = null;
@@ -232,14 +232,14 @@ public class PatientProcess {
 	}
 	
 	
-	public Status deletePatientById(Long idPatient) throws Exception {
+	public Status deletePatientById(Long patientId) throws Exception {
 
 		
 		Status status = new Status();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
-		String  url = srssUrl+"/patient/deleteById/"+idPatient;
+		String  url = srssUrl+"/patient/deleteById/"+patientId;
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 

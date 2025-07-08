@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.srss_frontend.base.model.Status;
@@ -87,6 +88,17 @@ public class PatientController {
 		return "redirect:/patient/";
 	}
 
+	@GetMapping("/detailSearch")
+	@ResponseBody
+	public Patient detailPatient(@RequestParam Long id) {
+	    Patient patient = null;
+		try {
+			patient = pasienProcess.getPatientById(id).getPatient().get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    return patient;
+	}
 	
 	
 	@GetMapping("/detail")
@@ -137,7 +149,7 @@ public class PatientController {
 			patient = pasienProcess.getPatientById(id).getPatient().get(0);
 			
 			if (patient == null) {
-				return "redirect:/patient/getAll";
+				return "redirect:/patient/";
 			}
 			
 			model.addAttribute("patient", patient);
@@ -203,7 +215,7 @@ public class PatientController {
 
 		try {
 
-			status = pasienProcess.deletePatientById(patient.getIdPasien());
+			status = pasienProcess.deletePatientById(patient.getPatientId());
 		
 				
 			redirectAttributes.addFlashAttribute("toastMessage", status.getResponseMessage());

@@ -56,7 +56,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a th:href="@{/doctor/}" class="app-brand-link">
+            <a  th:href="@{/room/}" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -172,7 +172,6 @@
             </li>
 
           </ul>
-          
         </aside>
         <!-- / Menu -->
 
@@ -192,7 +191,7 @@
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                   
-                  <h4 style="margin-top: 10px; align-content: center;">Master Doctor</h4>
+                  <h4 style="margin-top: 10px; align-content: center;">Master Room</h4>
                   
                 </div>
               </div>
@@ -206,136 +205,84 @@
 
            <div class="container-xxl flex-grow-1 container-p-y">
             
-             <form th:action="@{/doctor/update}" method="post" th:object="${doctor}">
-
-             <input
-                            type="hidden"
-                            id="doctorId"
-                            name="doctorId"
-                            class="form-control"
-                            th:value="${doctor.doctorId}"
-                             />
-             
-							<input
-                            type="hidden"
-                            id="doctorNumber"
-                            name="doctorNumber"
-                            class="form-control"
-                            th:value="${doctor.doctorNumber}"
-                             />
-                            
-                                         
-              <div class="card">
-                <div class="card-header"><h5>Doctor Edit</h5></div>
-                    <div class="card-body">
-                        <div class="row">
-                        <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Doctor Name</label>
-                          <input
-                            type="text"
-                            id="doctorName"
-                            name="doctorName"
-                            class="form-control"
-                            th:value="${doctor.doctorName}"
-                            required="required"
-                            placeholder="enter doctor name" />
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Phone Number</label>
-                          <input
-                            type="number"
-                            id="phoneNumber"
-                            name="phoneNumber"
-                            th:value="${doctor.phoneNumber}"
-                            class="form-control"
-                            required="required"
-                            placeholder="enter phone number" />
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col mb-6">
-                          <label for="nameWithTitle" class="form-label">Date Of Birth</label>
-                          <input
-                            type="date"
-                            id="dateOfBirth"
-                            name="dateOfBirth"
-                            class="form-control"
-                            th:value="${doctor.dateOfBirth}"
-                            required="required"
-                            placeholder="masukan date of birth" />
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md">
-                          <label class="form-label d-block">Gender</label>
-                          <div class="form-check form-check-inline mt-2">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="gender"
-                              id="gender"
-                              th:field="*{gender}"
-                              required="required"
-                              value="Man" />
-                            <label class="form-check-label" for="gender">Man</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="gender"
-                              id="gender"
-                              th:field="*{gender}"
-                              required="required"
-                              value="Women" />
-                            <label class="form-check-label" for="gender">Women</label>
-                          </div>
-                        </div>
-                      </div>
-
-					<div class="row">
-                       <div class="col-md">                      
-                        <label for="exampleFormControlSelect1" class="form-label">Specialty</label>
-                        <select class="form-select" id="specialty" name = "specialty" aria-label="Default select example" required="required">
-                          <option selected th:value="${doctor.specialty}"  th:text="${doctor.specialty}"></option>
-                          <option value="Dermatologist">Dermatologist</option>
-                          <option value="Allergist">Allergist</option>
-                          <option value="Orthopedics">Orthopedics</option>
-                        </select>
-                      </div>
-                    </div>
-
-                      <div class="row">
-                        <div class="col mb-6">
-                          <div>
-                            <label for="exampleFormControlTextarea1" class="form-label">Address</label>
-                            <textarea class="form-control" id="address" th:field="*{address}"
-                              name="address" rows="3" required="required"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                      
-						<div class="row">
-						    <div class="col text-end">
-						        <button type="submit" class="btn btn-primary me-2">Save</button>
-						        <a th:href="@{/doctor/}" class="btn btn-secondary">Cancel</a>
-						    </div>
-						</div>
-                        
-                    </div>
-                  </div>
-                  
-                 </form>
-          
+            <div th:if="${toastMessage}" 
+			     class="bs-toast toast toast-placement-ex m-2 fade bg-primary top-0 start-50 translate-middle-x hide" 
+			     role="alert" 
+			     aria-live="assertive" 
+			     aria-atomic="true" 
+			     data-bs-delay="2000">
+			    <div class="toast-header">
+			        <i class="bx bx-bell me-2"></i>
+			        <div class="me-auto fw-medium">Notifikasi</div>
+			        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			    </div>
+			    <div class="toast-body" th:text="${toastMessage}"></div>
+			</div>
+            
+             <div class="card">
+<!--                  <div class="card-header"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdd"> Tambah Pasien </button></div> -->
+                <div class="card-header"><a th:href="@{/room/add}" class="btn btn-info me-2" >Add Room</a> </div>
+                <div class="table-responsive text-nowrap">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Room Code</th>
+                        <th>Room Name</th>
+                        <th>Bed Capacity</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                    <tr th:each="room : ${rooms}">
+					<td th:text="${room.roomCode}"></td>
+					<td th:text="${room.roomName}"></td>
+					<td th:text="${room.bedCapacity}"></td>
+	
+                        <td>
+                         <div class="btn-group" role="group" aria-label="Actions">
+                         
+                        <a th:href="@{/room/detail(id=${room.idRoom})}" class="btn btn-info me-2" >Detail</a>  
+                        <a th:href="@{/room/update(id=${room.idRoom})}" class="btn btn-warning me-2">Edit</a>
+                         			 			
+   			 		<!--  	<a th:href="@{/room/update/{id}(id=${room.idRoom})}" class="btn btn-warning me-2" >Edit</a> -->
+						<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete" th:attr="data-room-id=${room.idRoom}, data-room-name=${room.roomName}">
+			                    Delete 
+		                </button> 
+ 						</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
             <!-- / Content -->
 
-          
+			<form th:action="@{/room/delete}" method="post">			
+						<div class="modal fade" id="modalDelete" tabindex="-1" aria-hidden="true"  th:object="${room}">
+					    	<div class="modal-dialog modal-dialog-centered" role="document">
+					        <div class="modal-content">
+					            <div class="modal-header">
+					                <h5 class="modal-title" id="modalCenterTitle">Delete Room</h5>
+					                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					            </div>
+					            <div class="modal-body">
+			    					<input type="hidden" id="idRoom" name="idRoom" />
+									<div class="row">
+								        <div class="col mb-6">
+								            <label for="roomName" class="form-label">Are you sure you want to delete the room ?</label>
+								            <input type="text" id="roomName" name="roomName" class="form-control" placeholder="enter room name" readonly />
+								        </div>
+								 	</div>
+								</div>
+					            <div class="modal-footer">
+					                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+					                    <button type="submit" class="btn btn-danger">Delete</button>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+			        </form>          
 
             <div class="content-backdrop fade"></div>
           </div>
@@ -351,6 +298,38 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
+    
+     <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toastElement = document.querySelector('.bs-toast');
+        if (toastElement) {
+            const toast = new bootstrap.Toast(toastElement);
+            toast.show(); // Tampilkan toast
+        }
+    });
+</script>
+    
+  <script>
+    const modalDelete = document.getElementById('modalDelete');
+    modalDelete.addEventListener('show.bs.modal', event => {
+        const button = event.relatedTarget; // Tombol yang diklik
+        const idRoom = button.getAttribute('data-room-id'); // Ambil ID Dokter
+        const roomName = button.getAttribute('data-room-name'); // Ambil nama Dokter
+        
+        // Isi input tersembunyi dengan ID pasien
+        const idRoomInput = modalDelete.querySelector('#idRoom');
+        idRoomInput.value = idRoom;
+
+        // Isi nama pasien di modal
+        const roomNameInput = modalDelete.querySelector('#roomName');
+        roomNameInput.value = roomName;
+
+        // Isi input ID di form penghapusan
+        const idRoomFormInput = modalDelete.querySelector('#idRoomForm');
+        idRoomFormInput.value = idRoom;
+    });
+</script>
+    
 
     <script src="../assets/vendor/libs/jquery/jquery.js"></script>
     <script src="../assets/vendor/libs/popper/popper.js"></script>

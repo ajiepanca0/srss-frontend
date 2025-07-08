@@ -116,9 +116,9 @@
 
           <div class="menu-inner-shadow"></div>
 
-          <ul class="menu-inner py-1">
+           <ul class="menu-inner py-1">
      
-        	<li class="menu-header small text-uppercase">
+     		<li class="menu-header small text-uppercase">
               <span class="menu-header-text"> Master </span>
             </li>
         
@@ -136,7 +136,38 @@
                 th:href="@{/doctor/}"
                 class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div class="text-truncate" data-i18n="doctor">Dokter</div>
+                <div class="text-truncate" data-i18n="doctor">Doctor</div>
+              </a>
+            </li>
+            
+             <li class="menu-item">
+              <a
+                th:href="@{/room/}"
+                class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div class="text-truncate" data-i18n="room">Room</div>
+              </a>
+            </li>
+            
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text"> Transaction </span>
+            </li>
+        
+            <li class="menu-item">
+              <a
+                th:href="@{/inpatient/}"
+                class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div class="text-truncate" data-i18n="inpatient">inpatient</div>
+              </a>
+            </li>
+            
+            <li class="menu-item">
+              <a
+                th:href="@{/outpatient/}"
+                class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div class="text-truncate" data-i18n="outpatient">outpatient</div>
               </a>
             </li>
 
@@ -160,7 +191,7 @@
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                   
-                  <h4 style="margin-top: 10px; align-content: center;">Master Pasien</h4>
+                  <h4 style="margin-top: 10px; align-content: center;">Master Patient</h4>
                   
                 </div>
               </div>
@@ -190,32 +221,32 @@
             
              <div class="card">
 <!--                  <div class="card-header"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdd"> Tambah Pasien </button></div> -->
-                <div class="card-header"><a th:href="@{/patient/add}" class="btn btn-info me-2" >Tambah Pasien</a> </div>
+                <div class="card-header"><a th:href="@{/patient/add}" class="btn btn-info me-2" >Add Patient</a> </div>
                 <div class="table-responsive text-nowrap">
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th>Nomor Pasien</th>
-                        <th>Nama Pasien</th>
-                        <th>Nomor Hp</th>
+                        <th>Patient Number</th>
+                        <th>Patient Name</th>
+                        <th>Phone Number</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                     <tr th:each="patient : ${patients}">
-					<td th:text="${patient.nomorPasien}"></td>
-					<td th:text="${patient.namaPasien}"></td>
-					<td th:text="${patient.nomorHp}"></td>
+					<td th:text="${patient.patientNumber}"></td>
+					<td th:text="${patient.patientName}"></td>
+					<td th:text="${patient.phoneNumber}"></td>
 	
                         <td>
                          <div class="btn-group" role="group" aria-label="Actions">
                          
-                        <a th:href="@{/patient/detail(id=${patient.idPasien})}" class="btn btn-info me-2" >Detail</a>  
-                        <a th:href="@{/patient/update(id=${patient.idPasien})}" class="btn btn-warning me-2">Edit</a>
+                        <a th:href="@{/patient/detail(id=${patient.patientId})}" class="btn btn-info me-2" >Detail</a>  
+                        <a th:href="@{/patient/update(id=${patient.patientId})}" class="btn btn-warning me-2">Edit</a>
                          			 			
-   			 		<!--  	<a th:href="@{/patient/update/{id}(id=${patient.idPasien})}" class="btn btn-warning me-2" >Edit</a> -->
-						<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete" th:attr="data-id-pasien=${patient.idPasien}, data-nama-pasien=${patient.namaPasien}">
-			                    Hapus 
+   			 		<!--  	<a th:href="@{/patient/update/{id}(id=${patient.patientId})}" class="btn btn-warning me-2" >Edit</a> -->
+						<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete" th:attr="data-patient-id=${patient.patientId}, data-patient-name=${patient.patientName}">
+			                    Delete 
 		                </button> 
  						</div>
                         </td>
@@ -232,21 +263,21 @@
 					    	<div class="modal-dialog modal-dialog-centered" role="document">
 					        <div class="modal-content">
 					            <div class="modal-header">
-					                <h5 class="modal-title" id="modalCenterTitle">Hapus Pasien</h5>
+					                <h5 class="modal-title" id="modalCenterTitle">Delete Pasien</h5>
 					                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					            </div>
 					            <div class="modal-body">
-			    					<input type="hidden" id="idPasien" name="idPasien" />
+			    					<input type="hidden" id="patientId" name="patientId" />
 									<div class="row">
 								        <div class="col mb-6">
-								            <label for="namaPasien" class="form-label">Apakah Anda yakin ingin menghapus pasien ?</label>
-								            <input type="text" id="namaPasien" name="namaPasien" class="form-control" placeholder="masukan nama pasien" readonly />
+								            <label for="patientName" class="form-label">Are you sure you want to delete the patient?</label>
+								            <input type="text" id="patientName" name="patientName" class="form-control" placeholder="enter patinet name" readonly />
 								        </div>
 								 	</div>
 								</div>
 					            <div class="modal-footer">
-					                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-					                    <button type="submit" class="btn btn-danger">Hapus</button>
+					                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+					                    <button type="submit" class="btn btn-danger">Delete</button>
 							            </div>
 							        </div>
 							    </div>
@@ -282,20 +313,20 @@
     const modalDelete = document.getElementById('modalDelete');
     modalDelete.addEventListener('show.bs.modal', event => {
         const button = event.relatedTarget; // Tombol yang diklik
-        const pasienId = button.getAttribute('data-id-pasien'); // Ambil ID pasien
-        const namaPasien = button.getAttribute('data-nama-pasien'); // Ambil nama pasien
+        const patientId = button.getAttribute('data-patient-id'); // Ambil ID pasien
+        const patientName = button.getAttribute('data-patient-name'); // Ambil nama pasien
         
         // Isi input tersembunyi dengan ID pasien
-        const idPasienInput = modalDelete.querySelector('#idPasien');
-        idPasienInput.value = pasienId;
+        const patientIdInput = modalDelete.querySelector('#patientId');
+        patientIdInput.value = patientId;
 
         // Isi nama pasien di modal
-        const namaPasienInput = modalDelete.querySelector('#namaPasien');
-        namaPasienInput.value = namaPasien;
+        const patientNameInput = modalDelete.querySelector('#patientName');
+        patientNameInput.value = patientName;
 
         // Isi input ID di form penghapusan
-        const idPasienFormInput = modalDelete.querySelector('#idPasienForm');
-        idPasienFormInput.value = pasienId;
+        const patientIdFormInput = modalDelete.querySelector('#patientIdForm');
+        patientIdFormInput.value = patientId;
     });
 </script>
     

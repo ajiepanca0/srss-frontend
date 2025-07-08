@@ -1,4 +1,4 @@
-package com.srss_frontend.doctor.process;
+package com.srss_frontend.outpatient.process;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,15 +15,12 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.srss_frontend.base.model.Status;
-import com.srss_frontend.doctor.model.Doctor;
-import com.srss_frontend.doctor.model.DoctorResponse;
 import com.srss_frontend.exception.ServiceException;
-
-
-
+import com.srss_frontend.outpatient.model.Outpatient;
+import com.srss_frontend.outpatient.model.OutpatientResponse;
 
 @Service
-public class DoctorProcess {
+public class OutpatientProcess {
 
 	public Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -32,20 +29,20 @@ public class DoctorProcess {
 	@Value("${srss.url}")
 	String srssUrl;
 	
-	public DoctorResponse getAllDoctor() throws Exception {
+	public OutpatientResponse getAllOutpatient() throws Exception {
 
 		
-		DoctorResponse doctorResponse = new DoctorResponse();
+		OutpatientResponse outpatientResponse = new OutpatientResponse();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
 		//ambil dari properties
-		String  url = srssUrl+"/doctor/getAll";
+		String  url = srssUrl+"/outpatient/getAll";
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 
 		HttpEntity<?> entity = new HttpEntity<>(headers);
-		ResponseEntity<DoctorResponse> response = null;
+		ResponseEntity<OutpatientResponse> response = null;
 
 		
 		try {
@@ -53,13 +50,13 @@ public class DoctorProcess {
 			        builder.toUriString(), 
 			        HttpMethod.GET, 
 			        entity, 
-			        DoctorResponse.class);		
+			        OutpatientResponse.class);		
 			
 			if(response != null) {
 				
 				if(response.getBody().getStatus().getResponseCode() == 200) {
 						
-					doctorResponse = response.getBody();
+					outpatientResponse = response.getBody();
 
 				}
 			}
@@ -76,23 +73,23 @@ public class DoctorProcess {
 		}
 		
 		 
-		 return doctorResponse;
+		 return outpatientResponse;
 		
 	}
 	
 	
-	public Status saveDoctor(Doctor doctor) throws Exception{
+	public Status saveOutpatient(Outpatient outpatient) throws Exception{
 
 		
 		Status status = new Status();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
-		String  url = srssUrl+"/doctor/add";
+		String  url = srssUrl+"/outpatient/add";
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 
-		HttpEntity<?> entity = new HttpEntity<>(doctor, headers);
+		HttpEntity<?> entity = new HttpEntity<>(outpatient, headers);
 		ResponseEntity<Status> response = null;
 
 		
@@ -128,19 +125,19 @@ public class DoctorProcess {
 	}
 	
 	
-	public Status updateDoctor(Doctor doctor) throws Exception {
+	public Status updateOutpatient(Outpatient outpatient) throws Exception {
 
 		
 		Status status = new Status();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
-		String  url = srssUrl+"/doctor/update/"+doctor.getDoctorId();
+		String  url = srssUrl+"/outpatient/update/"+outpatient.getOutpatientId();
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 
 
-		HttpEntity<?> entity = new HttpEntity<>(doctor, headers);
+		HttpEntity<?> entity = new HttpEntity<>(outpatient, headers);
 		ResponseEntity<Status> response = null;
 
 		
@@ -178,20 +175,20 @@ public class DoctorProcess {
 	}
 	
 	
-	public DoctorResponse getDoctorById(Long doctorId) throws Exception {
+	public OutpatientResponse getOutpatientById(Long outpatientId) throws Exception {
 
 	
-		DoctorResponse doctorResponse = new DoctorResponse();
+		OutpatientResponse outpatientResponse = new OutpatientResponse();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
-		String  url = srssUrl+"/doctor/getById";
+		String  url = srssUrl+"/outpatient/getById";
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
-		builder.queryParam("doctorId", doctorId);
+		builder.queryParam("outpatientId", outpatientId);
 
 		HttpEntity<?> entity = new HttpEntity<>( headers);
-		ResponseEntity<DoctorResponse> response = null;
+		ResponseEntity<OutpatientResponse> response = null;
 
 		
 		try {
@@ -199,13 +196,13 @@ public class DoctorProcess {
 			        builder.toUriString(), 
 			        HttpMethod.GET, 
 			        entity, 
-			        DoctorResponse.class);		
+			        OutpatientResponse.class);		
 			
 			if(response != null) {
 				
 				if(response.getBody().getStatus().getResponseCode() == 200) {
 						
-					doctorResponse = response.getBody();
+					outpatientResponse = response.getBody();
 				}	
 			}
 			
@@ -220,19 +217,19 @@ public class DoctorProcess {
 		}
 		
 				 
-		 return doctorResponse;
+		 return outpatientResponse;
 		
 	}
 	
 	
-	public Status deleteDoctorById(Long doctorId) throws Exception {
+	public Status deleteOutpatientById(Long outpatientId) throws Exception {
 
 		
 		Status status = new Status();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
-		String  url = srssUrl+"/doctor/deleteById/"+doctorId;
+		String  url = srssUrl+"/outpatient/deleteById/"+outpatientId;
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 
